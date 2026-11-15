@@ -66,7 +66,9 @@ pip install -r requirements.txt
 jupyter lab
 ```
 
-Place the authorised `OLUOL.cleaned.nc` file in the `data/` directory before running the notebooks. CAMS retrieval cells additionally require Copernicus Climate Data Store API access and a local CDS API configuration.
+Place the authorised `OLUOL.cleaned.nc` file at `data/OLUOL.cleaned.nc` before running either notebook. Launch Jupyter from the repository root so the relative `data/` and `figures/` paths resolve correctly.
+
+The exploratory notebook's CAMS aerosol-species analysis is optional and requires Copernicus Climate Data Store API access and local CDS API credentials. Its retrieval cell saves the downloaded file under `data/`. A separate total-AOD check is skipped if its optional input file is absent. See [data/README.md](data/README.md) for the exact filenames and setup notes.
 
 ## Methods and references
 
