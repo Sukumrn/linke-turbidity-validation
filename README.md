@@ -1,23 +1,60 @@
-# Validation of Climatological Linke Turbidity Against Ground-Measured Irradiance
+# Linke Turbidity Analysis Using Ground-Based Irradiance Measurements
 
-Solar resource / atmospheric physics research project using the DLR Eye2sky station network (station OLUOL, Oldenburg).
+A solar-meteorology project examining climatological Linke turbidity at the OLUOL station of the DLR Eye2Sky network in Oldenburg, Germany, using ground-based irradiance measurements and Python-based analysis.
 
-## Motivation
-PV yield and solar resource models often rely on climatological (long-term average) turbidity databases when real-time ground measurements aren't available. This project checks how accurate that assumption actually is, using a full year of high-resolution ground irradiance data as ground truth.
+## Research objective
 
-## What I did
-- Processed one year of 1-minute-resolution DNI/GHI/DHI irradiance measurements (525,600 timestamps) using Python (`pandas`, `pvlib`)
-- Implemented the Ineichen–Perez (2002) atmospheric turbidity retrieval algorithm, including clear-sky detection and air-mass modelling
-- Diagnosed and removed sun-tracker sensor artifacts through physical plausibility checks to clean the dataset
-- Cross-validated retrieved turbidity against station clear-sky reference data and CAMS reanalysis aerosol optical depth data
+Assess how a climatological Linke turbidity value compares with turbidity retrieved from station measurements, and examine the implications for clear-sky irradiance modelling and solar-resource assessment.
 
-## Key results
-- Turbidity retrieval algorithm verified against station clear-sky data with **≈2.7% median error**
-- Identified a **systematic ~24% overestimation** in the climatological turbidity database relative to ground-measured values
-- Found a clear **seasonal pattern** in this overestimation and cross-validated extreme events against CAMS data
+## Data
 
-## Tools
-Python · pandas · pvlib · NumPy · Matplotlib
+- **Station:** OLUOL, Oldenburg, Germany
+- **Measurement period:** 1 April 2022 – 1 April 2023
+- **Sampling:** nominal one-minute measurements
+- **Variables used:** GHI, DNI, DHI, clear-sky irradiance references, solar zenith angle, and station metadata
+- **Additional context:** selected Copernicus CAMS reanalysis aerosol optical depth fields
 
-## Notes
-Raw irradiance data is excluded from this repo due to size/licensing (DLR Eye2sky network). Scripts assume data is loaded in the same format as the Eye2sky station output.
+The original Eye2Sky NetCDF dataset is not redistributed here. Access and file placement instructions are in [data/README.md](data/README.md).
+
+## Workflow
+
+1. Inspect station metadata and measured/clear-sky irradiance variables.
+2. Apply daytime, clear-sky, and air-mass quality filters.
+3. Retrieve Linke turbidity using the Ineichen–Perez formulation.
+4. Compare the derived time series and monthly statistics with the pvlib climatological Linke turbidity lookup.
+5. Examine the effect of alternative turbidity inputs on clear-sky irradiance estimates.
+6. Investigate selected high-turbidity periods using CAMS aerosol data.
+
+## Repository contents
+
+- `notebooks/01_linke_turbidity_exploratory.ipynb` — data inspection, retrieval workflow, and exploratory CAMS checks.
+- `notebooks/02_linke_turbidity_project_analysis.ipynb` — documented methodology, comparisons, and project presentation.
+- `data/README.md` — instructions for the external station dataset.
+- `requirements.txt` — Python package dependencies.
+
+## Run the notebooks
+
+Create an environment and install the listed packages:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+# On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+jupyter lab
+```
+
+Place the authorised `OLUOL.cleaned.nc` file in the `data/` directory before running the notebooks. CAMS retrieval cells additionally require Copernicus Climate Data Store API access and a local CDS API configuration.
+
+## Methods and references
+
+- Ineichen, P. & Perez, R. (2002). A new airmass independent formulation for the Linke turbidity coefficient. *Solar Energy*, 73(3), 151–157.
+- Reno, M. J. & Hansen, C. W. (2016). Identification of periods of clear sky irradiance in time series of GHI measurements.
+- Copernicus Atmosphere Monitoring Service (CAMS), global reanalysis (EAC4).
+- pvlib Python documentation: https://pvlib-python.readthedocs.io/
+
+## Limitations and interpretation
+
+This repository documents an academic analysis, not a certified operational retrieval product. Derived values depend on sensor quality, clear-sky detection, solar-zenith and air-mass filters, and the comparison statistic. Numerical claims about percentage error or climatological bias should be quoted only together with the exact calculation, sample selection, and aggregation method used.
+
+The station data are subject to the original provider's access and licensing conditions and are therefore not included.
