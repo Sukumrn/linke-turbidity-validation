@@ -25,6 +25,17 @@ The original Eye2Sky NetCDF dataset is not redistributed here. Access and file p
 5. Examine the effect of alternative turbidity inputs on clear-sky irradiance estimates.
 6. Investigate selected high-turbidity periods using CAMS aerosol data.
 
+## Figures
+
+The exploratory notebook generates the following portfolio figures in the `figures/` directory:
+
+1. `fig01_station_derived_linke_turbidity.png` — station-derived Linke turbidity time series.
+2. `fig02_monthly_linke_turbidity_difference.png` — monthly relative difference between pvlib climatology and station-derived Linke turbidity.
+3. `fig03_climatology_vs_station_linke_turbidity.png` — monthly climatological versus station-derived Linke turbidity, using median statistics for both series.
+4. `fig04_cams_aerosol_species_timeseries.png` — CAMS aerosol optical depth by species for 18 June 2022.
+
+The figures should be regenerated from the notebooks when the analysis inputs or methods change. The CAMS figure is a selected-day aerosol context analysis; it does not by itself establish the cause of differences in Linke turbidity.
+
 ## Repository contents
 
 - `notebooks/01_linke_turbidity_exploratory.ipynb` — data inspection, retrieval workflow, and exploratory CAMS checks.
