@@ -29,10 +29,21 @@ The original Eye2Sky NetCDF dataset is not redistributed here. Access and file p
 
 The exploratory notebook generates the following portfolio figures in the `figures/` directory:
 
-1. `fig01_station_derived_linke_turbidity.png` — station-derived Linke turbidity time series.
-2. `fig02_monthly_linke_turbidity_difference.png` — monthly relative difference between pvlib climatology and station-derived Linke turbidity.
-3. `fig03_climatology_vs_station_linke_turbidity.png` — monthly climatological versus station-derived Linke turbidity, using median statistics for both series.
-4. `fig04_cams_aerosol_species_timeseries.png` — CAMS aerosol optical depth by species for 18 June 2022.
+### 1. Station-derived Linke turbidity
+
+![Station-derived Linke turbidity time series](figures/fig01_station_derived_linke_turbidity.png)
+
+### 2. Monthly Linke turbidity difference
+
+![Monthly relative difference between pvlib climatology and station-derived Linke turbidity](figures/fig02_monthly_linke_turbidity_difference.png)
+
+### 3. Climatology versus station-derived Linke turbidity
+
+![Monthly climatological versus station-derived Linke turbidity, using median statistics for both series](figures/fig03_climatology_vs_station_linke_turbidity.png)
+
+### 4. CAMS aerosol optical depth by species
+
+![CAMS aerosol optical depth by species for 18 June 2022](figures/fig04_cams_aerosol_species_timeseries.png)
 
 The figures should be regenerated from the notebooks when the analysis inputs or methods change. The CAMS figure is a selected-day aerosol context analysis; it does not by itself establish the cause of differences in Linke turbidity.
 
